@@ -1,0 +1,13 @@
+/* Shop Page CSS */
+
+
+.shop-header {
+    background-image: url("https://s28126.pcdn.co/blogs/ask-experian/wp-content/uploads/The-10-Most-Popular-Vehicles-to-Lease-in-2020-1400x912-1.jpg.optimal.jpg");
+    background-size: cover;
+    height: 700px;
+    color: lightblue; 
+}
+
+.shop-stats {
+    color: greenyellow; 
+}
