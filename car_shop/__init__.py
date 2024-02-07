@@ -8,6 +8,7 @@ from .blueprints.site.routes import site
 from config import Config 
 # ADD THIS
 from .models import login_manager, db 
+from .blueprints.auth.routes import auth
 
 #instantiating our Flask app
 app = Flask(__name__) #passing in the __name__ variable which just takes the name of the folder we're in
@@ -29,6 +30,7 @@ login_manager.login_message_category = 'warning'
 
 
 app.register_blueprint(site)
+app.register_blueprint(auth)
 
 #ADD THIS
 #instantiating our datbase & wrapping our app
