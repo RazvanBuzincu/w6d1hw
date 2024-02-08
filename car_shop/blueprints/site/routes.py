@@ -2,7 +2,7 @@ from flask import Blueprint, flash, redirect, render_template, request
 # MAKE SURE YOU UPDATE ANY NECESSARY IMPORTS ABOVE AND BELOW HERE
 
 #internal import 
-from car_shop.models import Product, db 
+from car_shop.models import Product, Customer, Order, db 
 from car_shop.forms import ProductForm
 
 
@@ -17,10 +17,16 @@ def shop():
 
     #we need to query our database to grab all of our products to display
     allprods = Product.query.all() #the same as SELECT * FROM products, list of objects 
+    allcustomers = Customer.query.all() # ADD THIS
+    allorders = Order.query.all() # ADD THIS
+    shop_stats = {
+        'products' : len(allprods), #this is how many total products we have
+        'sales' : sum([order.order_total for order in allorders]),  #[ 27.99, 83.25, 50.99 ] sum them bad boys up
+        'customers' : len(allcustomers)
+    }
 
-    our_class = "Rangers are the best "
                             #whats on left side is html, right side is whats in our route
-    return render_template('shop.html', shop=allprods, coolmessage = our_class ) #looking inside our template_folder (site_templates) to find our shop.html file
+    return render_template('shop.html', shop=allprods, stats=shop_stats ) #looking inside our template_folder (site_templates) to find our shop.html file
 
 
 @site.route('/shop/create', methods= ['GET', 'POST'])
@@ -92,3 +98,4 @@ def delete(id):
     db.session.commit()
 
     return redirect('/')
+

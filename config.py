@@ -3,7 +3,7 @@
 
 import os #operating system 
 from dotenv import load_dotenv #allows us to load our environment variables (variables needed to run application)
-
+from datetime import timedelta
 
 # establish our base directory so whenever we use "." to reference any location in our app it knows we are referncing
 # rangers_shop folder 
@@ -29,3 +29,5 @@ class Config():
     FLASK_DEBUG = os.environ.get('FLASK_DEBUG')
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'Literally whatever you want as long as its a string. Cool Beans'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
+    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY')
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=365)
